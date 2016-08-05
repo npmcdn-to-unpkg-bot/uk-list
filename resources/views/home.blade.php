@@ -22,6 +22,29 @@
         <div class="item"><img src="{{ url('img/slider-4.jpg') }}" alt=""></div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-7">
+           <div class="col-lg-4">
+
+               <div class="panel panel-default">
+                   <div class="panel-body">
+                       <img src="{{ url('img/placeholder-500x500.jpeg') }}" alt="" width="300px">
+                   </div>
+                   <div class="panel-footer">
+                       <h4><b>Real Bear With Claws...</b></h4>
+                       <p><b>Leicestershire</b> - <b>Username</b> </p>
+                       <p>Animals</p>
+                   </div>
+               </div>
+
+           </div>
+        </div>
+        <div class="col-lg-3">
+
+        </div>
+    </div>
+
 @stop
 
 {{-- JAVASCRIPT SECTION --}}
