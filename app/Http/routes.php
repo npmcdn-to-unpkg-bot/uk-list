@@ -11,4 +11,13 @@
 |
 */
 
+//Page Routes
 Route::get('/', 'PagesController@homepage');
+Route::get('/login', 'PagesController@loginpage');
+
+//Authentication Routes
+Route::group(['prefix' => 'auth'], function(){
+
+    Route::post('/register', 'AuthController@register');
+
+});

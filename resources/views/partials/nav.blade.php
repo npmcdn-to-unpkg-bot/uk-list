@@ -9,28 +9,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                <a class="navbar-brand" href="{{ url('/') }}">LOGO HERE</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">My Ads</a></li>
-                            <li><a href="#">My Messages</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">My Details</a></li>
-                            <li><a href="#">Payment Options</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
+                    @if(Auth::user())
+                        <li><a href="#">Help</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">My Ads</a></li>
+                                <li><a href="#">My Messages</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">My Details</a></li>
+                                <li><a href="#">Payment Options</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{{ url('auth/logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">My Ads</a></li>
+                                <li><a href="#">My Messages</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">My Details</a></li>
+                                <li><a href="#">Payment Options</a></li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
                 <form class="navbar-form navbar-right">
-                    <button type="submit" class="btn btn-success">Post An Ad</button>
+                    @if(Auth::user())
+                        <a href="#" class="btn btn-success">Post An Ad</a>
+                    @else
+                        <a href="{{ url('/login') }}" class="btn btn-success">Post An Ad</a>
+                    @endif
                 </form>
             </div>
             </div>

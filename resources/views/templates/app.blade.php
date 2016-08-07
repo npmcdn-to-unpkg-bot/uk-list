@@ -6,6 +6,17 @@
     <style>
         html, body {
             width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+        .wrapper {
+            min-height: 75%;
+            height: auto !important;
+            height: 75%;
+            margin: 0 auto -4em;
+        }
+        .push {
+            height: 200px;
         }
     </style>
     @yield('css')
@@ -14,12 +25,20 @@
 
 @include('partials.nav')
 
-@yield('body')
+<div class="wrapper">
+    @yield('body')
+    <div class="push"></div>
+</div>
+
+@include('partials.footer')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.9.3/vue-resource.min.js"></script>
+
 @yield('javascript')
 </body>
 </html>
