@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>UK-List</title>
     <link rel="stylesheet" href="{{ url('css/bootstrap-yeti.min.css') }}">
+    <meta id="_token" value="{{ csrf_token() }}" content="content">
     <style>
         html, body {
             width: 100%;
@@ -21,7 +22,7 @@
     </style>
     @yield('css')
 </head>
-<body>
+<body id="body">
 
 @include('partials.nav')
 
@@ -36,8 +37,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
 <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.9.3/vue-resource.min.js"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>--}}
+<script src="{{ url('js/vue.min.js') }}"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.9.3/vue-resource.min.js"></script>--}}
+<script src="{{ url('js/vue-resource.min.js') }}"></script>
+<script>
+    Vue.http.headers.common['X-CSRF-TOKEN'] = $('#_token').attr('value');
+</script>
 
 @yield('javascript')
 </body>

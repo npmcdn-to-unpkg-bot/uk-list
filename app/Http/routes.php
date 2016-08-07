@@ -18,6 +18,10 @@ Route::get('/login', 'PagesController@loginpage');
 //Authentication Routes
 Route::group(['prefix' => 'auth'], function(){
 
+//  Authentication Post Routes
     Route::post('/register', 'AuthController@register');
+
+//  Authentication Get Routes
+    Route::get('/logout', 'AuthController@logout');
 
 });

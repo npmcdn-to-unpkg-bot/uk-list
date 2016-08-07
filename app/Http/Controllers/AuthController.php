@@ -14,18 +14,21 @@ class AuthController extends Controller
     public function register(Request $request)
     {
 
-        $fullname = $request->input('r-fullname');
-        $email    = $request->input('r-email');
-        $username = $request->input('r-username');
-        $password = $request->input('r-password');
+        $fullname = $request->input('fullname');
+        $email    = $request->input('email');
+        $username = $request->input('username');
+        $password = $request->input('password');
 
-        if(Auth::attempt(['email' => $email]))
+        $email_check       = User::where('email', $email)->get();
+        $username_check    = User::where('username', $username)->get();
+
+        if(count($email_check) == 1)
         {
-            return 'Email Already Exists!';
+            return 'email_exists';
         }
-        else if(Auth::attempt(['username' => $username]))
+        else if(count($username_check) == 1)
         {
-            return 'Username Already Exists!';
+            return 'username_exists';
         }
         else
         {
@@ -52,7 +55,13 @@ class AuthController extends Controller
             $MailList->save();
         }
 
-        return redirect('/');
+        return 'success';
 
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('/');
     }
 }
