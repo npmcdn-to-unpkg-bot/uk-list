@@ -170,6 +170,9 @@
         </div>
     </div>
 
+    <form action="{{ url('auth/verification/send') }}">
+        <button>SEND!</button>
+    </form>
 @stop
 
 {{-- JAVASCRIPT SECTION --}}

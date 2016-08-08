@@ -23,5 +23,6 @@ Route::group(['prefix' => 'auth'], function(){
 
 //  Authentication Get Routes
     Route::get('/logout', 'AuthController@logout');
+    Route::get('/verification/send', 'MailController@send');
 
 });
