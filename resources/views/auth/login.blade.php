@@ -59,6 +59,13 @@
         .r-alert-danger hr {
             border-top-color: #d32a0e;
         }
+        #forgot-password-link {
+            font-size: 13px;
+            font-style: italic;
+        }
+        #r_offers_link:hover {
+            text-decoration: none;
+        }
     </style>
 @stop
 
@@ -94,6 +101,11 @@
                                <label for="l-password" class="col-lg-2 control-label">Password</label>
                                <div class="col-lg-10">
                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                               </div>
+                           </div>
+                           <div class="form-group">
+                               <div class="col-lg-10 col-lg-offset-2">
+                                   <a href="#" id="forgot-password-link">Forgot your password?</a>
                                </div>
                            </div>
                            <div class="form-group">
@@ -138,7 +150,7 @@
                                    <span class="password-error error">Cannot be less than 6 characters.</span>
                                    <div class="checkbox">
                                        <label>
-                                           <input name="r_offers" v-model="user.offers" type="checkbox"> <span style="color:black !important;">I would like to receive special offers & promotions!</span>
+                                           <input name="r_offers" v-model="user.offers" type="checkbox"> <span style="color:black !important;"><b><a id="r_offers_link">I would like to receive special offers & promotions!</a></b></span>
                                        </label>
                                    </div>
                                </div>

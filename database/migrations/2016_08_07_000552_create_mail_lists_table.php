@@ -17,6 +17,7 @@ class CreateMailListsTable extends Migration
             $table->integer('user_id');
             $table->string('username');
             $table->string('email');
+            $table->integer('confirmed')->default(0);
             $table->timestamps();
         });
     }

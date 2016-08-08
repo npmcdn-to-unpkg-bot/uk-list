@@ -18,6 +18,7 @@ class AuthController extends Controller
         $email    = $request->input('email');
         $username = $request->input('username');
         $password = $request->input('password');
+        $offers   = $request->input('offers');
 
         $email_check       = User::where('email', $email)->get();
         $username_check    = User::where('username', $username)->get();
@@ -47,13 +48,13 @@ class AuthController extends Controller
 
 
 //      Add users to the mailing list if they chose to be
-        if($request->input('r-offers') != null)
+        if($offers != null)
         {
-            $MailList = new MailList();
-            $MailList->user_id  = $userid;
-            $MailList->email    = $email;
-            $MailList->username = $username;
-            $MailList->save();
+            $mailist = new MailList();
+            $mailist->user_id  = $userid;
+            $mailist->email    = $email;
+            $mailist->username = $username;
+            $mailist->save();
         }
 
 //      Send a confirmation email to the user
