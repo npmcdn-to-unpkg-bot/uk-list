@@ -21,6 +21,7 @@
 {{-- BODY SECTION --}}
 @section('body')
 
+    {{-- Owl Carousel --}}
     <div id="owl-example" class="owl-carousel">
         <div class="item"><img src="{{ url('img/slider-1.jpg') }}" alt=""></div>
         <div class="item"><img src="{{ url('img/slider-2.jpg') }}" alt=""></div>
@@ -28,6 +29,7 @@
         <div class="item"><img src="{{ url('img/slider-4.jpg') }}" alt=""></div>
     </div>
 
+    {{-- START ROW FOR PRODUCTS / ADVERTS --}}
     <div class="row" style="margin-top: 20px;">
         <div class="col-lg-2"></div>
         <div class="col-lg-7 grid">

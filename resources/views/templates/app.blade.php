@@ -6,6 +6,7 @@
     <style>
         html, body {
             width: 100%;
+            overflow-x: hidden;
         }
     </style>
     @yield('css')
