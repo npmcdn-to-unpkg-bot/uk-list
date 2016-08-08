@@ -12,4 +12,14 @@ class PagesController extends Controller
     {
         return view('home');
     }
+
+    public function loginpage()
+    {
+        return view('auth.login');
+    }
+
+    public function testpage()
+    {
+        return view('emails.verification');
+    }
 }

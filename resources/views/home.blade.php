@@ -10,10 +10,30 @@
             height: auto;
         }
         .grid-item {
-            width: 30%;
+            width: 24%;
         }
         .panel > .panel-body > img {
             width: 99%;
+            visibility: hidden;
+        }
+        .panel-body {
+            min-height: 200px;
+            max-height: 600px;
+            width: auto;
+            height: auto;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+        .panel-footer > a.btn {
+            width: 100%;
+        }
+        .vert {
+            width: 300px;
+            height: 300px;
+            max-width: 300px;
+            max-height: 300px;
+            background: url('http://fpoimg.com/300x300?text=Advertisement');
         }
     </style>
 @stop
@@ -31,105 +51,126 @@
 
     {{-- START ROW FOR PRODUCTS / ADVERTS --}}
     <div class="row" style="margin-top: 20px;">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-7 grid">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-8 grid">
 
-           <div class="col-lg-4 grid-item">
+           <div class="col-lg-3 grid-item">
                <div class="panel panel-default">
-                   <div class="panel-body">
-                       <img src="{{ url('img/placeholder-500x500.jpeg') }}" alt="" width="100%">
-                   </div>
+                   <div class="panel-body" style="background: url('{{ url('img/placeholder-500x500.jpeg') }}')"><img src="{{ url('img/placeholder-500x500.jpeg') }}"></div>
                    <div class="panel-footer">
                        <h4><b>Real Bear With Claws...</b></h4>
                        <p>Posted by: <b>AjaxDemon120X</b></p>
                        <p>Located in: <b>Leicestershire</b></p>
                        <p>Category: <b>Animals</b></p>
                        <p>Price: <b>&pound;1970</b></p>
+                       <a href="#" class="btn btn-success">View Product</a>
                    </div>
                </div>
            </div>
 
-            <div class="col-lg-4 grid-item">
+            <div class="col-lg-3 grid-item">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <img src="{{ url('img/bugatti.jpg') }}" alt="" width="300px">
-                    </div>
+                    <div class="panel-body" style="background: url('{{ url('img/bugatti.jpg') }}')"><img src="{{ url('img/bugatti.jpg') }}"></div>
                     <div class="panel-footer">
                         <h4><b>New Bugatti Veyron</b></h4>
                         <p>Posted by: <b>AllAboutTheCars2</b></p>
                         <p>Located in: <b>Glouchester</b></p>
                         <p>Category: <b>Card</b></p>
                         <p>Price: <b>&pound;970,031</b></p>
+                        <a href="#" class="btn btn-success">View Product</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 grid-item">
+            <div class="col-lg-3 grid-item">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <img src="{{ url('img/placeholder-500x500.jpeg') }}" alt="" width="300px">
+                    <div class="panel-body" style="background: url('{{ url('img/otter.jpg') }}')"><img src="{{ url('img/otter.jpg') }}"></div>
+                    <div class="panel-footer">
+                        <h4><b>Real Bear With Claws...</b></h4>
+                        <p>Posted by: <b>Ottamon413</b></p>
+                        <p>Located in: <b>Poland</b></p>
+                        <p>Category: <b>Animals</b></p>
+                        <p>Price: <b>&pound;170</b></p>
+                        <a href="#" class="btn btn-success">View Product</a>
                     </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 grid-item">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="background: url('{{ url('img/placeholder-500x500.jpeg') }}')"><img src="{{ url('img/placeholder-500x500.jpeg') }}"></div>
                     <div class="panel-footer">
                         <h4><b>Real Bear With Claws...</b></h4>
                         <p>Posted by: <b>AjaxDemon120X</b></p>
                         <p>Located in: <b>Leicestershire</b></p>
                         <p>Category: <b>Animals</b></p>
                         <p>Price: <b>&pound;1970</b></p>
+                        <a href="#" class="btn btn-success">View Product</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 grid-item">
+            <div class="col-lg-3 grid-item">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <img src="{{ url('img/placeholder-500x500.jpeg') }}" alt="" width="300px">
+                    <div class="panel-body" style="background: url('{{ url('img/otter.jpg') }}')"><img src="{{ url('img/otter.jpg') }}"></div>
+                    <div class="panel-footer">
+                        <h4><b>Real Bear With Claws...</b></h4>
+                        <p>Posted by: <b>Ottamon413</b></p>
+                        <p>Located in: <b>Poland</b></p>
+                        <p>Category: <b>Animals</b></p>
+                        <p>Price: <b>&pound;170</b></p>
+                        <a href="#" class="btn btn-success">View Product</a>
                     </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 grid-item">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="background: url('{{ url('img/bugatti.jpg') }}')"><img src="{{ url('img/bugatti.jpg') }}"></div>
+                    <div class="panel-footer">
+                        <h4><b>New Bugatti Veyron</b></h4>
+                        <p>Posted by: <b>AllAboutTheCars2</b></p>
+                        <p>Located in: <b>Glouchester</b></p>
+                        <p>Category: <b>Card</b></p>
+                        <p>Price: <b>&pound;970,031</b></p>
+                        <a href="#" class="btn btn-success">View Product</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 grid-item">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="background: url('{{ url('img/placeholder-500x500.jpeg') }}')"><img src="{{ url('img/placeholder-500x500.jpeg') }}"></div>
                     <div class="panel-footer">
                         <h4><b>Real Bear With Claws...</b></h4>
                         <p>Posted by: <b>AjaxDemon120X</b></p>
                         <p>Located in: <b>Leicestershire</b></p>
                         <p>Category: <b>Animals</b></p>
                         <p>Price: <b>&pound;1970</b></p>
+                        <a href="#" class="btn btn-success">View Product</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 grid-item">
+            <div class="col-lg-3 grid-item">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <img src="{{ url('img/placeholder-500x500.jpeg') }}" alt="" width="300px">
-                    </div>
+                    <div class="panel-body" style="background: url('{{ url('img/otter.jpg') }}')"><img src="{{ url('img/otter.jpg') }}"></div>
                     <div class="panel-footer">
                         <h4><b>Real Bear With Claws...</b></h4>
-                        <p>Posted by: <b>AjaxDemon120X</b></p>
-                        <p>Located in: <b>Leicestershire</b></p>
+                        <p>Posted by: <b>Ottamon413</b></p>
+                        <p>Located in: <b>Poland</b></p>
                         <p>Category: <b>Animals</b></p>
-                        <p>Price: <b>&pound;1970</b></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 grid-item">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <img src="{{ url('img/placeholder-500x500.jpeg') }}" alt="" width="300px">
-                    </div>
-                    <div class="panel-footer">
-                        <h4><b>Real Bear With Claws...</b></h4>
-                        <p>Posted by: <b>AjaxDemon120X</b></p>
-                        <p>Located in: <b>Leicestershire</b></p>
-                        <p>Category: <b>Animals</b></p>
-                        <p>Price: <b>&pound;1970</b></p>
+                        <p>Price: <b>&pound;170</b></p>
+                        <a href="#" class="btn btn-success">View Product</a>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="col-lg-3">
-
+        <div class="col-lg-2">
+            <div class="panel panel-default vert"></div>
         </div>
     </div>
-
 @stop
 
 {{-- JAVASCRIPT SECTION --}}
