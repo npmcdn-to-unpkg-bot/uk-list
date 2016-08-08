@@ -19,11 +19,12 @@ Route::get('/test', 'PagesController@testpage');
 //Authentication Routes
 Route::group(['prefix' => 'auth'], function(){
 
-//  Authentication Post Routes
     Route::post('/register', 'AuthController@register');
+    Route::post('/login'   , 'AuthController@login');
+    Route::get('/logout'   , 'AuthController@logout');
 
-//  Authentication Get Routes
-    Route::get('/logout', 'AuthController@logout');
+
+
     Route::get('/verification/send', 'MailController@send');
 
 });

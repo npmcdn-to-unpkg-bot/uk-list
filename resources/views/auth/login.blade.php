@@ -37,7 +37,7 @@
             color: red;
             font-size: 12px;
         }
-        .r-alert {
+        .r-alert,.l-alert {
             padding: 15px;
             margin-bottom: 21px;
             border: 1px solid transparent;
@@ -66,6 +66,19 @@
         #r_offers_link:hover {
             text-decoration: none;
         }
+        .nav > li.disabled > a {
+            color: #999999 !important;
+            text-decoration: none !important;
+            background-color: transparent !important;
+            cursor: not-allowed !important;
+        }
+        .nav > li.disabled > a:hover,
+        .nav > li.disabled > a:focus {
+            color: #999999;
+            text-decoration: none !important;
+            background-color: transparent !important;
+            cursor: not-allowed !important;
+        }
     </style>
 @stop
 
@@ -79,6 +92,11 @@
             <p class="r-alert-message">That E-mail Address is already registered!</p>
         </div>
 
+        <div class="l-alert r-alert-dismissible r-alert-danger">
+            <button type="button" class="close">&times;</button>
+            <p class="r-alert-message">Invalid Username/Email or password</p>
+        </div>
+
        <div class="panel panel-default">
 
            <ul class="nav nav-tabs">
@@ -88,19 +106,21 @@
 
            <div class="tab-content">
                <div id="login" class="tab-pane fade in active">
-                   <form class="form-horizontal">
+                   <form class="form-horizontal" autocomplete="off">
                        <fieldset>
                            <legend>Login</legend>
-                           <div class="form-group">
-                               <label for="inputEmail" class="col-lg-2 control-label">Username</label>
+                           <div class="form-group" id="l-username-group">
+                               <label for="l-username" class="col-lg-2 control-label">Username</label>
                                <div class="col-lg-10">
-                                   <input name="l-username" type="text" class="form-control" placeholder="Username">
+                                   <input v-model="login.username" name="l-username" type="text" class="form-control" placeholder="Username or Email">
+                                   <span class="l-username-error error">Username is required to login!</span>
                                </div>
                            </div>
-                           <div class="form-group">
+                           <div class="form-group" id="l-password-group">
                                <label for="l-password" class="col-lg-2 control-label">Password</label>
                                <div class="col-lg-10">
-                                   <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                   <input v-model="login.password" type="password" class="form-control" id="l-password" placeholder="Password">
+                                   <span class="l-password-error error">Password is required to login!</span>
                                </div>
                            </div>
                            <div class="form-group">
@@ -110,7 +130,7 @@
                            </div>
                            <div class="form-group">
                                <div class="col-lg-10 col-lg-offset-2">
-                                   <button type="submit" class="btn btn-primary btns">Login</button>
+                                   <a v-on:click="postLogin" class="btn btn-primary btns">Login <img class="ajax" src="{{ url('img/ajax.gif') }}" alt="" width="20px"></a>
                                </div>
                            </div>
                        </fieldset>
@@ -157,7 +177,7 @@
                            </div>
                            <div class="form-group">
                                <div class="col-lg-10 col-lg-offset-2">
-                                   <a v-on:click="postRegister" class="btn btn-primary btns">Register <img id="ajax" src="{{ url('img/ajax.gif') }}" alt="" width="20px"> </a>
+                                   <a v-on:click="postRegister" class="btn btn-primary btns">Register <img class="ajax" src="{{ url('img/ajax.gif') }}" alt="" width="20px"> </a>
                                </div>
                            </div>
                        </fieldset>
@@ -174,12 +194,14 @@
     <script>
 
         $(document).ready(function(){
-            $('#ajax').hide();
+            $('.ajax').hide();
 
             $('.fullname-error').hide();
             $('.username-error').hide();
             $('.email-error').hide();
             $('.password-error').hide();
+            $('.l-username-error').hide();
+            $('.l-password-error').hide();
 
             $('#email-exists').hide();
             $('#username-exists').hide();
@@ -205,6 +227,7 @@
 
             $('.close').on('click', function(){
                 $('.r-alert').fadeOut();
+                $('.l-alert').fadeOut();
             })
         });
 
@@ -218,6 +241,10 @@
                     username: '',
                     email: '',
                     password: ''
+                },
+                login : {
+                    username: '',
+                    password: ''
                 }
             },
 
@@ -228,13 +255,13 @@
             methods: {
                 postRegister: function(){
 
-                    if(this.validateInput() == false)
+                    if(this.validateRegisterInput() == false)
                     {
 
                     }
                     else
                     {
-                        $('#ajax').show();
+                        $('.ajax').show();
                         $('.btns').addClass('disabled');
 
                         var data = this.user;
@@ -260,7 +287,7 @@
                                     break;
                             }
 
-                            $('#ajax').hide();
+                            $('.ajax').hide();
                             $('.btns').removeClass('disabled');
 
                         });
@@ -268,7 +295,43 @@
                     }
                 },
 
-                validateInput: function(){
+                postLogin: function(){
+                    if(this.validateLoginInput() == false)
+                    {
+
+                    }
+                    else
+                    {
+                        $('.ajax').show();
+                        $('.btns').addClass('disabled');
+
+                        var data = this.login;
+
+                        this.$http.post('auth/login', data, function(response){
+
+                            switch(response)
+                            {
+                                case 'error':
+                                    $('.l-alert').fadeIn();
+                                    break;
+                                case 'username_exists':
+                                    $('.l-alert').fadeIn();
+                                    break;
+                                default:
+                                    console.log('default hit');
+                                    var redirect_url = '/';
+                                    window.location.href = redirect_url;
+                                    break;
+                            }
+
+                            $('.ajax').hide();
+                            $('.btns').removeClass('disabled');
+
+                        });
+                    }
+                },
+
+                validateRegisterInput: function(){
                     this.hideAllErrors();
 
                     var check = true;
@@ -305,17 +368,41 @@
                     return check;
                 },
 
+                validateLoginInput: function(){
+                    this.hideAllErrors();
+
+                    var check = true;
+
+                    if(this.login.username == '')
+                    {
+                        $('#l-username-group').addClass('has-error');
+                        $('.l-username-error').show();
+                        check = false;
+                    }
+
+                    if(this.login.password == '')
+                    {
+                        $('#l-password-group').addClass('has-error');
+                        $('.l-password-error').show();
+                        check = false;
+                    }
+
+                    return check;
+                },
+
                 hideAllErrors: function(){
                     $('#fullname-group').removeClass('has-error');
                     $('#username-group').removeClass('has-error');
                     $('#email-group').removeClass('has-error');
                     $('#password-group').removeClass('has-error');
+                    $('#l-username-group').removeClass('has-error');
+                    $('#l-password-group').removeClass('has-error');
                     $('.fullname-error').hide();
                     $('.username-error').hide();
                     $('.email-error').hide();
                     $('.password-error').hide();
-                    $('.email-error').hide();
-                    $('.password-error').hide();
+                    $('.l-username-error').hide();
+                    $('.l-password-error').hide();
                 },
             }
 

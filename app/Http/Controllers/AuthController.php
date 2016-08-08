@@ -64,6 +64,27 @@ class AuthController extends Controller
 
     }
 
+    public function login(Request $request)
+    {
+
+        $username = $request->input('l-username');
+        $password    = $request->input('l-password');
+
+        if(Auth::attempt(['email' => $username, 'password' => $password]))
+        {
+            return 'Authenticated!';
+        }
+        else if(Auth::attempt(['username' => $username, 'password' => $password]))
+        {
+            return 'Authenticated!';
+        }
+        else
+        {
+            return 'Authentication Failed';
+        }
+
+    }
+
     public function logout(Request $request)
     {
         $request->session()->flush();
