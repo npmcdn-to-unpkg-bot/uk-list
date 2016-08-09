@@ -28,3 +28,10 @@ Route::group(['prefix' => 'auth'], function(){
     Route::get('/verification/send', 'MailController@send');
 
 });
+
+Route::group(['prefix' => 'user'], function() {
+
+    Route::get('/me', 'PagesController@userAccount');
+    Route::get('/verify/key={key}', 'AccountController@verifyUser');
+
+});
