@@ -67,20 +67,20 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
-        $username = $request->input('l-username');
+        $username    = $request->input('l-username');
         $password    = $request->input('l-password');
 
         if(Auth::attempt(['email' => $username, 'password' => $password]))
         {
-            return 'Authenticated!';
+            return 'auth!';
         }
         else if(Auth::attempt(['username' => $username, 'password' => $password]))
         {
-            return 'Authenticated!';
+            return 'auth!';
         }
         else
         {
-            return 'Authentication Failed';
+            return 'error';
         }
 
     }

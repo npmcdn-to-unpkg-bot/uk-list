@@ -39,7 +39,6 @@
         }
         .r-alert,.l-alert {
             padding: 15px;
-            margin-bottom: 21px;
             border: 1px solid transparent;
             border-radius: 0;
             display: none;
@@ -314,13 +313,16 @@
                                 case 'error':
                                     $('.l-alert').fadeIn();
                                     break;
-                                case 'username_exists':
-                                    $('.l-alert').fadeIn();
+                                case 'auth':
+
+                                    console.log('User Authed!');
+
+                                    var redirect_url = '/';
+                                    window.location.href = redirect_url;
+
                                     break;
                                 default:
                                     console.log('default hit');
-                                    var redirect_url = '/';
-                                    window.location.href = redirect_url;
                                     break;
                             }
 
