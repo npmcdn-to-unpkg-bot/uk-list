@@ -118,7 +118,7 @@
                            <div class="form-group" id="l-password-group">
                                <label for="l-password" class="col-lg-2 control-label">Password</label>
                                <div class="col-lg-10">
-                                   <input v-model="login.password" type="password" class="form-control" id="l-password" placeholder="Password">
+                                   <input v-on:keyup.enter="postLogin" v-model="login.password" type="password" class="form-control" id="l-password" placeholder="Password">
                                    <span class="l-password-error error">Password is required to login!</span>
                                </div>
                            </div>
@@ -222,7 +222,7 @@
                     $('#login').show();
                     $('#login').css('display', 'block');
                 }
-            })
+            });
 
             $('.close').on('click', function(){
                 $('.r-alert').fadeOut();
@@ -325,9 +325,6 @@
                                     console.log('default hit');
                                     break;
                             }
-
-                            $('.ajax').hide();
-                            $('.btns').removeClass('disabled');
 
                         });
                     }
