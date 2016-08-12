@@ -154,7 +154,7 @@
 
                switch(check)
                {
-                   case 'my-ads':
+                   case 'my-add':
                        $('#add').show();
                        $('#add').addClass('active');
                        break;
