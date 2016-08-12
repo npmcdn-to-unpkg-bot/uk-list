@@ -58,7 +58,7 @@ class AuthController extends Controller
         }
 
 //      Send a confirmation email to the user
-        MailController::send($userid, 'Verification Required', $email);
+        MailController::sendVerificationEmail($userid, 'Verification Required', $email);
 
         return 'success';
 

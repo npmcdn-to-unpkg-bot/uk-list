@@ -23,9 +23,9 @@ Route::group(['prefix' => 'auth'], function(){
     Route::post('/login'   , 'AuthController@login');
     Route::get('/logout'   , 'AuthController@logout');
 
-
-
-    Route::get('/verification/send', 'MailController@send');
+    Route::get('/verification/send',    'MailController@sendVerificationEmail');
+    Route::get('/verification/resend',  'MailController@resendVerificationEmail');
+    Route::get('/verification/success', 'AccountController@showVerificationSuccess');
 
 });
 

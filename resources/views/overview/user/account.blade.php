@@ -7,21 +7,18 @@
             -moz-box-sizing: border-box;
             box-sizing: border-box;
             height:270px;
-            background: lightgrey;
+            background: #008CBA;
             padding: 30px;
             text-align: center;
             margin-top:175px;
             color: white;
         }
         .info {
-            background: #f2f2f2;
             padding: 10px;
-            color: black;
             width: 50%;
             font-weight: bold;
             position: relative;
             margin: auto;
-            display: none;
         }
         .account-nav-fix {
             padding: 20px;
@@ -34,6 +31,10 @@
         .nav-tabs li:hover {
             cursor: pointer;
         }
+        #resend-loader {
+            display: none;
+        }
+
     </style>
 @stop
 
@@ -45,12 +46,22 @@
                 <h1>Please Verify Your Account</h1>
                 <br>
                 <p>
-                    Veryfying your account will help us by identifying false/ malicious users, in turn this keeps both you
-                    and us safe!
+                    <b>
+                        Veryfying your account will help us by identifying false/ malicious users, in turn this keeps both you
+                        and us safe!
+                    </b>
                 </p>
-                <p><button class="btn btn-success">Resend Verification Email</button> | <button id="verified" class="btn btn-success">I've Verified my account</button></p>
+                <p><a id="button-resend" class="btn btn-success" v-on:click="resendVerificationEmail">Resend Verification Email <img src="{{ url('img/ajax.gif') }}" width="20px" id="resend-loader"></a> | <button id="verified" class="btn btn-success">I've Verified my account</button></p>
                 <div class="info">
-                    <p>If you've verified your account give the page a quick refresh!</p>
+                    <div id="resend" class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>Wahlaa!</strong> We've resent the activation email!</a>.
+                    </div>
+
+                    <div id="verification" class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong></strong> Please wait for a few minutes and then refresh the page or resend the email.</a>.
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,10 +72,10 @@
                     <li id="my-add" class="active"><a>My Ads</a></li>
                     <li id="my-messages" ><a>My Messages</a></li>
                     <li id="my-starred-items"><a>My Starred Items</a></li>
-                    <li id="my-messages"><a>My Messages</a></li>
+                    <li id="my-messages"><a>My Profile</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane active" id="ads">
+                    <div class="tab-pane active" id="add">
                         <div class="row">
                             <form>
                                 <div class="form-group">
@@ -96,13 +107,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="profile">
+                    <div class="tab-pane" id="messages">
                         asdadfcxv
                     </div>
                     <div class="tab-pane" id="starred-items">
                         xccef
                     </div>
-                    <div class="tab-pane" id="messages">
+                    <div class="tab-pane" id="profile">
                         4
                     </div>
                 </div>
@@ -110,22 +121,31 @@
         </div>
     @endif
 
-    {{ $user }}
-
 @stop
 
 @section('javascript')
     <script>
        $(document).ready(function(){
+
+           $('#resend').hide();
+           $('#verification').hide();
+           $('#confirmation').hide();
+
+
+
            $('#verified').on('click', function(){
-               $('.info').show();
-           })
+               $('#verification').fadeIn();
+               setInterval(function(){
+                   $('#verification').fadeOut();
+               }, 5000);
+           });
+
 
            $('.nav-tabs li').on('click', function(){
                $('.nav-tabs li').removeClass('active');
                $(this).addClass('active');
 
-               $('div #ads').hide();
+               $('div #add').hide();
                $('div #profile').hide();
                $('div #starred-items').hide();
                $('div #messages').hide();
@@ -156,6 +176,40 @@
                }
 
            })
+
+       });
+
+
+       new Vue({
+           el: '#body',
+
+           data: {
+
+           },
+
+           ready: function(){
+
+           },
+
+           methods: {
+               resendVerificationEmail: function(){
+
+                   $('#resend-loader').show();
+                   $('#button-resend').addClass('disabled');
+
+                   this.$http.get('/auth/verification/resend', function(response){
+
+                       $('#resend').fadeIn();
+                       setInterval(function(){
+                           $('#resend').fadeOut();
+                       }, 5000);
+
+                       $('#resend-loader').hide();
+                       $('#button-resend').removeClass('disabled');
+
+                   });
+               }
+           }
 
        })
     </script>

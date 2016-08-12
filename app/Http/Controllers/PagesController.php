@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AccountController;
+use App\MailList;
+use Illuminate\Support\Facades\Crypt;
 
 class PagesController extends Controller
 {
@@ -22,11 +24,12 @@ class PagesController extends Controller
 
     public function testpage()
     {
-        return view('emails.verification');
+//      USE MEEE!
     }
 
     public function userAccount()
     {
+        if(!Auth::check()){return redirect('/');}
         $user = AccountController::getUser();
         return view('overview.user.account', compact('user'));
     }

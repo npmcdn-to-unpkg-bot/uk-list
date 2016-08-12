@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 class AccountController extends Controller
 {
 
-    public function __contruct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -27,13 +27,20 @@ class AccountController extends Controller
     {
 
         User::where('email', Crypt::decrypt($key))->update(['confirmed' => 1]);
+        MailList::where('email', Crypt::decrypt($key))->update(['confirmed' => 1]);
 
-//      If user is in mailing list then do this also
-//        if(MailList::where('email', Crypt::decrypt($key))->get())
+        return redirect('auth/verification/success');
+    }
 
-//        MailList::where('email', Crypt::decrypt($key))->update(['confirmed' => 1]);
+    public function showVerificationSuccess()
+    {
+        if(!Auth::check()){return redirect('/');}
 
-        return redirect('/user/me');
+        $message = 'Thank you for signing up!';
+
+        MailController::sendSuccessEmail(Auth::user()->id, $message, Auth::user()->email);
+
+        return view('auth.verificationSuccess');
 
     }
 }
