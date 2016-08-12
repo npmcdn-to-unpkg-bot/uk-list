@@ -58,7 +58,7 @@
         <div class="container">
             <div class="account-nav-fix">
                 <ul class="nav nav-tabs">
-                    <li id="my-ads" class="active"><a>My Ads</a></li>
+                    <li id="my-add" class="active"><a>My Ads</a></li>
                     <li id="my-messages" ><a>My Messages</a></li>
                     <li id="my-starred-items"><a>My Starred Items</a></li>
                     <li id="my-messages"><a>My Messages</a></li>
@@ -135,8 +135,8 @@
                switch(check)
                {
                    case 'my-ads':
-                       $('#ads').show();
-                       $('#ads').addClass('active');
+                       $('#add').show();
+                       $('#add').addClass('active');
                        break;
                    case 'my-profile':
                        $('#profile').show();
