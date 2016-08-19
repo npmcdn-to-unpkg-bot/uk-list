@@ -15,6 +15,7 @@
 Route::get('/', 'PagesController@homepage');
 Route::get('/login', 'PagesController@loginpage');
 Route::get('/test', 'PagesController@testpage');
+Route::get('/post/ad', 'PagesController@postAdPage');
 
 //Authentication Routes
 Route::group(['prefix' => 'auth'], function(){

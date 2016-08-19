@@ -97,12 +97,12 @@
                         <div class="row">
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                    <h4 class="list-group-item-heading">Thunderbird</h4>
+                                    <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, animi consequuntur deserunt dicta dolorem error fugiat illo laborum, laudantium libero mollitia officia perspiciatis provident quasi quos sapiente similique. Odit, repudiandae?</p>
                                 </a>
                                 <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">List group item heading</h4>
-                                    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                    <h4 class="list-group-item-heading">Hello Kitty Doll</h4>
+                                    <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut dolorem ea fugiat, in incidunt possimus quas temporibus velit voluptas! Alias aperiam autem cum ipsam nobis perspiciatis quod repudiandae, sapiente sed.</p>
                                 </a>
                             </div>
                         </div>

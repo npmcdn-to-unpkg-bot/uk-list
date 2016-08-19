@@ -46,7 +46,7 @@
                 </ul>
                 <form class="navbar-form navbar-right">
                     @if(Auth::user())
-                        <a href="#" class="btn btn-success">Post An Ad</a>
+                        <a href="{{ url('/post/ad') }}" class="btn btn-success">Post An Ad</a>
                     @else
                         <a href="{{ url('/login') }}" class="btn btn-success">Post An Ad</a>
                     @endif

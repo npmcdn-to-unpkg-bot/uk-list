@@ -33,4 +33,9 @@ class PagesController extends Controller
         $user = AccountController::getUser();
         return view('overview.user.account', compact('user'));
     }
+
+    public function postAdPage()
+    {
+        return view('singleview/user/postAd');
+    }
 }
